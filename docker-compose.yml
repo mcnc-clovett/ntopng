@@ -3,7 +3,7 @@ version: '3'
 services:
   ntopng:
     image: "mcncclovett/ntopng"
-    command: ["redis",  "/etc/redis.conf", ";", "ntopng", "--local-networks", "10.0.0.0/8"]
+    command: ["/usr/bin/redis-server",  "/etc/redis.conf", ";", "/usr/local/bin/ntopng", "--local-networks", "10.0.0.0/8"]
     #ports:
     # - "3000:3000"
     network_mode: "host"
