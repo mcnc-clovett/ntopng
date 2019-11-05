@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  redis:
+    image: "redis:alpine"
+  ntopng:
+    image: "mcncclovett/ntopng"
+    command: ["ntopng", "--redis", "redis", "--local-networks", "10.0.0.0/8"]
+    #ports:
+    # - "3000:3000"
+    network_mode: "host"
+    depends_on:
+     - redis
+    links:
+     - redis

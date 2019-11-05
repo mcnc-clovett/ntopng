@@ -1,14 +1,13 @@
 FROM centos:7
 
 COPY ntop.repo /etc/yum.repos.d/
+COPY run.sh /
 
 RUN yum install -y epel-release
 RUN yum upgrade -y
-RUN yum install -y redis ntopng hiredis-devel
+RUN yum install -y ntopng
+RUN yum clean all
 
-RUN sed -i 's/^daemonize no/daemonize yes/' /etc/redis.conf
-
-RUN /usr/bin/redis-server /etc/redis.conf
-RUN /usr/local/bin/ntopng /etc/ntopng/ntopng.conf
+CMD /run.sh
 
 EXPOSE 3000
