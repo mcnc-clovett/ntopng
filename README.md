@@ -1,3 +1,3 @@
 # ntopng
 
-This docker container is meant to have the latest ntopng version running on Centos.
+This docker container should havethe latest ntopng version running on Ubuntu 20.04 LTS.

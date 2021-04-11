@@ -1,9 +1,20 @@
 version: '3'
 
 services:
+  redis:
+    image: "redis:alpine"
+    container_name: "redis"
+    restart: "unless-stopped"
+    network_mode: "host"
   ntopng:
-    image: "mcncclovett/ntopng"
-    command: ["/usr/local/bin/ntopng", "--local-networks", "10.0.0.0/8", "--redis", "localhost"]
+    image: "ntopng:test" #"mcncclovett/ntopng"
+    container_name: "ntopng"
+    command: ["/usr/bin/ntopng", "--https-port=3001", "--community", "-m", "10.0.0.0/8,192.168.0.0/16.172.16.0.0/21", "-r", "localhost"]
+    depends_on:
+      - "redis"
+    #volumes:
+    #  - /docker/ntopng/config:/etc/ntopng
     #ports:
     # - "3000:3000"
     network_mode: "host"
+
