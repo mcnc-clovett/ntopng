@@ -7,7 +7,7 @@ services:
     restart: "unless-stopped"
     network_mode: "host"
   ntopng:
-    image: "ntopng:test" #"mcncclovett/ntopng"
+    image: "mcncclovett/ntopng"
     container_name: "ntopng"
     command: ["/usr/bin/ntopng", "--https-port=3001", "--community", "-m", "10.0.0.0/8,192.168.0.0/16.172.16.0.0/21", "-r", "localhost"]
     depends_on:
